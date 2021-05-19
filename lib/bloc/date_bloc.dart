@@ -132,6 +132,8 @@ class DateBloc {
     }
     if (hours >= 24) {
       hours %= 24;
+    } else if (hours < 0) {
+      hours = 0 + (hours % 24);
     }
     correctedMinutes = minutes.toString().padLeft(2, '0');
     correctedHours = hours.toString().padLeft(2, '0');
