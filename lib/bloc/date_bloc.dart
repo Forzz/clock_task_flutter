@@ -7,7 +7,7 @@ enum StartDateEvent {
 }
 
 class DateBloc {
-  DateTime date = DateTime.now();
+  DateTime date = DateTime.now().toUtc();
   int currentUTC = 14;
   List<String> timezonesStr = [
     'UTC-12',
@@ -98,7 +98,7 @@ class DateBloc {
     if (event == StartDateEvent.eventStart &&
         currentUTC >= 0 &&
         currentUTC < timezonesStr.length) {
-      date = DateTime.now();
+      date = DateTime.now().toUtc();
       _outputStateController.sink
           .add(timeCorrection(date.hour, date.minute, date.second));
     } else if (event == StartDateEvent.changeUTCup &&
